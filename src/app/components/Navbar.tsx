@@ -93,7 +93,9 @@ export default function Navbar() {
           </div>
 
           {/* 3. Actions (Desktop) */}
-          <div className="hidden md:flex items-center gap-4">
+          <a 
+            href="/contact"
+            className="hidden md:flex items-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -105,7 +107,7 @@ export default function Navbar() {
                 className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </motion.button>
-          </div>
+          </a>
 
           {/* 4. Mobile Toggle */}
           <button
@@ -143,11 +145,11 @@ export default function Navbar() {
                   ))}
                   <div className="h-px bg-slate-100 my-1" />
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="flex items-center justify-between px-4 py-3 font-semibold text-white bg-green-700 rounded-xl hover:bg-green-600 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
-                    Get in touch
+                    Contact Us
                     <ArrowUpRight size={18} />
                   </a>
                 </div>
