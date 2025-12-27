@@ -64,7 +64,7 @@ const PricingCard = ({
     </div>
 
     {/* Deliverables List */}
-    <div className="flex-grow space-y-4 mb-8">
+    <div className="grow space-y-4 mb-8">
       <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${
         highlight ? "text-slate-500" : "text-slate-400"
       }`}>
@@ -101,7 +101,7 @@ export default function PricingPage() {
     <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-32 px-4 md:px-6">
+      <main className="grow pt-32 px-4 md:px-6">
         
         {/* 1. Header */}
         <section className="max-w-4xl mx-auto mb-20 text-center">

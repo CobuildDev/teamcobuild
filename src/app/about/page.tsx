@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -20,7 +19,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-32 px-4 md:px-6">
+      <main className="grow pt-32 px-4 md:px-6">
         
         {/* 1. Hero / Manifesto */}
         <section className="max-w-5xl mx-auto mb-24 text-center">
@@ -38,7 +37,7 @@ export default function AboutPage() {
               <span className="text-emerald-600">digital infrastructure</span> for our city.
             </h1>
             <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
-              CoBuild is not just a software company; it is a movement. We are a collective of designers, engineers, and thinkers obsessed with solving foundational local problems using global-standard technology.
+              teamCobuild is not just a software company; it is a movement. We are a collective of designers, engineers, and thinkers obsessed with solving foundational local problems using global-standard technology.
             </p>
           </motion.div>
         </section>
@@ -51,7 +50,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between min-h-[400px]"
+              className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between min-h-100"
             >
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                 <Target className="text-emerald-400" size={24} />

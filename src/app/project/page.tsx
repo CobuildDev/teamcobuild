@@ -5,25 +5,25 @@ import Footer from "../components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Github, Layers, Zap, Box, Layout, GitBranch, FlaskConical, ArrowRight } from "lucide-react";
 
-// --- Mock Data: Projects ---
+// --- Projects ---
 const PROJECTS = [
   {
     id: 1,
-    title: "MarketFlow",
+    title: "QwikHelp",
     category: "Commerce",
-    status: "Beta",
+    status: "Development",
     description: "A digital inventory system designed specifically for Ariaria market traders. Offline-first architecture to handle spotty internet connections.",
-    tech: ["Next.js", "SQLite", "PWA"],
+    tech: ["Next.js", "Mongodb Atlas", "Figma"],
     links: { demo: "#", github: "#" },
     image: "bg-gradient-to-br from-blue-500 to-cyan-400" // Placeholder for an actual image
   },
   {
     id: 2,
-    title: "KekeRoute",
-    category: "Logistics",
+    title: "Oba",
+    category: "Commerce",
     status: "Development",
-    description: "Crowdsourced mapping for local tricycle routes in Aba. Helps commuters predict prices and find the quickest routes during traffic.",
-    tech: ["Flutter", "Mapbox", "Supabase"],
+    description: "e-commerce platform specialy for groccery shopping only and directly from verifed farmers to ensure security and freshness.",
+    tech: ["ReactNative", "Mapbox", "Supabase"],
     links: { github: "#" }, // No demo yet
     image: "bg-gradient-to-br from-yellow-400 to-orange-500"
   },
@@ -39,12 +39,12 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "CoBuild UI",
-    category: "Open Source",
-    status: "Live",
-    description: "Our internal design system and component library. Accessible, themeable, and built for building Nigerian-centric interfaces.",
-    tech: ["React", "Tailwind", "Storybook"],
-    links: { demo: "#", github: "#" },
+    title: "Constitui",
+    category: "Education",
+    status: "Concept",
+    description: "A tool to help you write a 'Personal Constitution' for your life. Instead of just a to-do list, you actually talk to the AI about your values and fears. It takes that big, scary future and breaks it down into years, months, and finally, just what you need to do today.",
+    tech: ["NextJs", "Tailwind", "RAG Models"],
+    links: {},
     image: "bg-gradient-to-br from-emerald-400 to-teal-600"
   }
 ];
@@ -137,7 +137,7 @@ export default function ProjectsPage() {
     : PROJECTS.filter(p => p.category === filter);
 
   return (
-    <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
+    <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900    flex flex-col">
       <Navbar />
 
       <main className="flex-grow pt-32 px-4 md:px-6">
@@ -152,9 +152,9 @@ export default function ProjectsPage() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium mb-4">
                 <FlaskConical size={12} className="text-emerald-600" />
-                <span>The CoBuild Lab</span>
+                <span>The teamCoBuild Lab</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              <h1 className="text-4xl md:text-5xl tracking-tighter font-bold text-slate-900 mb-4">
                 Our Projects
               </h1>
               <p className="text-lg text-slate-500 max-w-xl">

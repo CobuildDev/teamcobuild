@@ -50,12 +50,13 @@ export default function Home() {
               Our Engineering Foundation
             </p>
             <div className="flex flex-wrap justify-center gap-3 md:gap-6 opacity-70">
-               <TechItem icon={Code2} label="Next.js 15" />
-               <TechItem icon={Code2} label="React 19" />
+               <TechItem icon={Code2} label="Next.js" />
+               <TechItem icon={Code2} label="ReactNative" />
                <TechItem icon={Code2} label="TypeScript" />
+               <TechItem icon={Code2} label="Python" />
                <TechItem icon={Layout} label="Tailwind CSS" />
-               <TechItem icon={Database} label="Supabase" />
-               <TechItem icon={Layout} label="Framer Motion" />
+               <TechItem icon={Database} label="NodeJs" />
+               <TechItem icon={Layout} label="Figma" />
             </div>
           </div>
         </section>
@@ -64,7 +65,7 @@ export default function Home() {
         <section className="py-24 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl tracking-tighter md:text-4xl font-bold text-slate-900 mb-4">
                 Built for impact. Driven by community.
               </h2>
               <p className="text-lg text-slate-500">

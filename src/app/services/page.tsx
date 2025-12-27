@@ -121,7 +121,7 @@ export default function ServicesPage() {
               {/* Left: The Promise */}
               <div>
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                  The CoBuild Standard.
+                  The teamCoBuild Standard.
                 </h2>
                 <p className="text-slate-500 mb-8 leading-relaxed">
                   Most agencies outsource their work or cut corners. We don't. When you work with us, your product is built by the same engineers building our core startups.

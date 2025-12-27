@@ -33,10 +33,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 max-w-4xl mb-6"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-900 max-w-4xl mb-6"
         >
           Solving local problems with <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500">
             world-class software.
           </span>
         </motion.h1>
@@ -48,7 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-slate-500 max-w-2xl mb-10 leading-relaxed"
         >
-          We are Team CoBuild. A community-centered collective engineering the 
+          We are teamCoBuild. A community-centered collective engineering the 
           digital infrastructure for our city and beyond. We build products that matter.
         </motion.p>
 
@@ -78,7 +78,7 @@ export default function Hero() {
           className="relative mt-20 w-full max-w-5xl"
         >
           {/* Decorative Glow */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-20" />
+          <div className="absolute -inset-1 bg-liner-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-20" />
           
           {/* Window Container */}
           <div className="relative bg-slate-950 rounded-xl shadow-2xl border border-slate-800 overflow-hidden text-left">
@@ -92,7 +92,7 @@ export default function Hero() {
               </div>
               <div className="ml-4 flex items-center gap-2 text-xs text-slate-400 font-mono bg-slate-800/50 px-2 py-0.5 rounded">
                 <Terminal size={12} />
-                <span>cobuild-cli — v1.0.0</span>
+                <span>teamcobuild-cli — v1.0.0</span>
               </div>
             </div>
 
@@ -102,14 +102,14 @@ export default function Hero() {
                 <div className="flex gap-2">
                   <span className="text-emerald-400">➜</span>
                   <span className="text-blue-400">~</span>
-                  <span className="text-slate-400">cobuild init --location="Aba, NG"</span>
+                  <span className="text-slate-400">teamcobuild init --location="Aba, NG"</span>
                 </div>
                 <div className="text-slate-500 pl-4 mb-2">Initializing new local ecosystem...</div>
                 
                 <div className="flex gap-2">
                   <span className="text-emerald-400">➜</span>
                   <span className="text-blue-400">~</span>
-                  <span className="text-slate-400">cobuild focus</span>
+                  <span className="text-slate-400">teamcobuild focus</span>
                 </div>
                 <div className="pl-4 text-emerald-300">
                   [✓] Identifying local pain points<br/>

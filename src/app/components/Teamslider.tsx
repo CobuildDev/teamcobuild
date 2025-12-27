@@ -3,15 +3,14 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Zap, ArrowRight } from "lucide-react";
 
-// --- Configuration: Add your team members here ---
+// team members 
 const TEAM_DATA = [
   {
     id: 1,
-    name: "Chinedu Okeke",
-    role: "Lead Engineer",
-    // Replace with actual image paths (e.g., "/team/chinedu.jpg")
+    name: "Emeka Victor",
+    role: "Founder",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop",
-    bio: "Full-stack wizard obsessed with scalable architecture.",
+    bio: "Fullstack Developer and Computer Engineer, obsessed with scalable architecture.",
     socials: { twitter: "#", github: "#", linkedin: "#" }
   },
   {
@@ -53,7 +52,7 @@ const TEAM_DATA = [
   }
 ];
 
-// --- Sub-Component: Individual Card ---
+// Individual Card
 const Card = ({ member }: { member: any }) => {
   // Render Hiring Card
   if (member.type === "hiring") {
@@ -74,7 +73,7 @@ const Card = ({ member }: { member: any }) => {
   return (
     <motion.div 
       whileHover={{ y: -8 }}
-      className="group relative min-w-[280px] h-[420px] rounded-3xl overflow-hidden bg-white shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+      className="group w-2 relative min-w-[280px] h-[420px] rounded-3xl overflow-hidden bg-white shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
     >
       {/* Image Container */}
       <div className="h-[280px] w-full relative overflow-hidden bg-slate-100">

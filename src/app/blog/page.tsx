@@ -59,7 +59,7 @@ export default function BlogPage() {
              />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h1 className="text-3xl tracking-tighter md:text-5xl font-bold text-slate-900 mb-4">
             Words are loading...
           </h1>
           
