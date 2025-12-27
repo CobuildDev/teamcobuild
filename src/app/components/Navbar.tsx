@@ -26,10 +26,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { title: "Services", href: "#services" },
-    { title: "Projects", href: "#projects" },
+    { title: "Services", href: "/services" },
+    { title: "Projects", href: "/project" },
     { title: "About", href: "/about" },
-    { title: "Pricing", href: "#pricing" },
+    { title: "Pricing", href: "/pricing" },
     { title: "Blog", href: "/blog" },
   ];
 
