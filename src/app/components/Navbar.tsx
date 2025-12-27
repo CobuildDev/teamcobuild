@@ -28,9 +28,9 @@ export default function Navbar() {
   const navLinks = [
     { title: "Services", href: "#services" },
     { title: "Projects", href: "#projects" },
-    { title: "About", href: "#about" },
+    { title: "About", href: "/about" },
     { title: "Pricing", href: "#pricing" },
-    { title: "Blog", href: "#blog" },
+    { title: "Blog", href: "/blog" },
   ];
 
   return (
@@ -53,12 +53,14 @@ export default function Navbar() {
               : "bg-white/50 backdrop-blur-md border-transparent py-3 pl-6 pr-3"
           )}
         >
-          <Image
-            src="/icons/teamcobuild.svg"
-            alt="teamCobuild Logo"
-            width={160}
-            height={28}
-          />
+          <a href="/">
+            <Image
+              src="/icons/teamcobuild.svg"
+              alt="teamCobuild Logo"
+              width={160}
+              height={28}
+            />
+          </a>
 
           {/* 2. Desktop Nav with Sliding Pill Animation */}
           <div className="hidden md:flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200/50 ml-4">
@@ -93,9 +95,7 @@ export default function Navbar() {
           </div>
 
           {/* 3. Actions (Desktop) */}
-          <a 
-            href="/contact"
-            className="hidden md:flex items-center gap-4">
+          <a href="/contact" className="hidden md:flex items-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
