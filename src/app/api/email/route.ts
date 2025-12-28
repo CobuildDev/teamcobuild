@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     const { data, error } = await resend.emails.send({
       from: 'CoBuild Proposal <onboarding@resend.dev>', // Use this exact default email for testing
-      to: ['your-actual-email@gmail.com'], // REPLACE THIS with your personal email
+      to: ['cobuildofficial@hotmail.com'], // REPLACE THIS with your personal email
       subject: `New Proposal: ${title}`,
       html: `
         <h3>New Project Proposal</h3>
