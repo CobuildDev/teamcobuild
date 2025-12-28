@@ -94,10 +94,10 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Product</h4>
               <ul className="flex flex-col gap-2">
-                <FooterLink href="#" label="Features" />
-                <FooterLink href="#" label="Integrations" />
+                <FooterLink href="/features" label="Features" />
+                <FooterLink href="/integrations" label="Integrations" />
                 <FooterLink href="/pricing" label="Pricing" />
-                <FooterLink href="#" label="Changelog" />
+                <FooterLink href="/changelog" label="Changelog" />
               </ul>
             </div>
 
@@ -106,7 +106,7 @@ export default function Footer() {
               <h4 className="font-semibold text-slate-900 text-sm">Company</h4>
               <ul className="flex flex-col gap-2">
                 <FooterLink href="/about" label="About" />
-                <FooterLink href="#" label="Careers" />
+                <FooterLink href="/careers" label="Careers" />
                 <FooterLink href="/blog" label="Blog" />
                 <FooterLink href="/contact" label="Contact" />
               </ul>
@@ -116,10 +116,10 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Resources</h4>
               <ul className="flex flex-col gap-2">
-                <FooterLink href="#" label="Community" />
-                <FooterLink href="#" label="Help Center" />
-                <FooterLink href="#" label="Terms of Service" />
-                <FooterLink href="#" label="Privacy Policy" />
+                <FooterLink href="/community" label="Community" />
+                <FooterLink href="/helpcenter" label="Help Center" />
+                <FooterLink href="/termsofservice" label="Terms of Service" />
+                <FooterLink href="/privacyandpolicy" label="Privacy Policy" />
               </ul>
             </div>
           </div>
