@@ -96,7 +96,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-2">
                 <FooterLink href="#" label="Features" />
                 <FooterLink href="#" label="Integrations" />
-                <FooterLink href="#" label="Pricing" />
+                <FooterLink href="/pricing" label="Pricing" />
                 <FooterLink href="#" label="Changelog" />
               </ul>
             </div>
@@ -105,10 +105,10 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Company</h4>
               <ul className="flex flex-col gap-2">
-                <FooterLink href="#" label="About" />
+                <FooterLink href="/about" label="About" />
                 <FooterLink href="#" label="Careers" />
-                <FooterLink href="#" label="Blog" />
-                <FooterLink href="#" label="Contact" />
+                <FooterLink href="/blog" label="Blog" />
+                <FooterLink href="/contact" label="Contact" />
               </ul>
             </div>
 
