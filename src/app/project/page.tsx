@@ -24,7 +24,7 @@ const PROJECTS = [
     category: "Commerce",
     status: "Development",
     description:
-      "A digital inventory system designed specifically for Ariaria market traders. Offline-first architecture to handle spotty internet connections.",
+      "QwikHelp is a multi-service digital platform that connects people who need everyday help with trusted individuals who can provide it, within their local area.",
     tech: ["Next.js", "Mongodb Atlas", "Figma"],
     links: { demo: "#", github: "#" },
     image: "bg-gradient-to-br from-blue-500 to-cyan-400", // Placeholder for an actual image

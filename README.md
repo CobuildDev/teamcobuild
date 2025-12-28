@@ -12,11 +12,8 @@ This is the official landing page for Team Cobuild. It is designed to introduce 
 * Framer Motion
 * Lucide React
 
-## Getting Started
-Clone the repository and open the `index.html` file in your browser to view the page locally.
+<!-- ## Getting Started
+Clone the repository and open the `index.html` file in your browser to view the page locally. -->
 
 ## Team
-This project is built and maintained by Team Cobuild.
-
-## License
-[Insert License Type Here]
+This project is built and maintained by teamCobuild.
