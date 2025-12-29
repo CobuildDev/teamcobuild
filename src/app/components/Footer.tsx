@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Twitter, 
@@ -7,7 +7,10 @@ import {
   Github, 
   Instagram, 
   ArrowRight, 
-  Mail 
+  Mail,
+  Loader2,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -17,8 +20,6 @@ import Image from "next/image";
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-
 
 const SocialLink = ({ href, icon: Icon }: { href: string; icon: any }) => (
   <motion.a
@@ -45,44 +46,106 @@ const FooterLink = ({ href, label }: { href: string; label: string }) => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+
+    try {
+      // FIX: Point to the dedicated Newsletter route (Brevo)
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // FIX: Send exactly what api/newsletter/route.ts expects (just the email)
+        body: JSON.stringify({ email }), 
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail(""); 
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
+  };
 
   return (
     <footer className="w-full py-6 px-4 md:px-6 mt-12">
       {/* Main "Island" Container */}
       <div className="max-w-7xl mx-auto bg-slate-50/50 border border-slate-200 rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden relative">
         
-        {/* Background decorative blob (Optional subtle gradient) */}
+        {/* Background decorative blob */}
         <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-emerald-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
           
           {/* Column 1: Brand & Newsletter (Span 4 cols) */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-               <Image
-                        src="/icons/teamcobuild.svg"
-                        alt="teamCobuild Logo"
-                        width={160}
-                        height={28}
-                      />
+            <Image
+              src="/icons/teamcobuild.svg"
+              alt="teamCobuild Logo"
+              width={160}
+              height={28}
+            />
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
               Building the future of local software solutions. Join our community to start building better together.
             </p>
             
             {/* Newsletter Pill */}
-            <form className="relative max-w-sm" onSubmit={(e) => e.preventDefault()}>
+            <form className="relative max-w-sm" onSubmit={handleSubscribe}>
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full bg-white border border-slate-200 rounded-full py-2.5 pl-10 pr-12 text-sm outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all placeholder:text-slate-400"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading" || status === "success"}
+                className={cn(
+                  "w-full bg-white border rounded-full py-2.5 pl-10 pr-12 text-sm outline-none transition-all placeholder:text-slate-400",
+                  status === "error" 
+                    ? "border-red-300 focus:ring-2 focus:ring-red-500/20" 
+                    : "border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                )}
               />
+              
               <button 
                 type="submit"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 bg-slate-900 text-white rounded-full hover:bg-emerald-600 transition-colors"
+                disabled={status === "loading" || status === "success"}
+                className={cn(
+                  "absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-full transition-all flex items-center justify-center",
+                  status === "success" 
+                    ? "bg-emerald-500 text-white cursor-default" 
+                    : "bg-slate-900 text-white hover:bg-emerald-600"
+                )}
               >
-                <ArrowRight size={14} />
+                {status === "loading" ? (
+                  <Loader2 size={14} className="animate-spin" />
+                ) : status === "success" ? (
+                  <CheckCircle2 size={14} />
+                ) : (
+                  <ArrowRight size={14} />
+                )}
               </button>
             </form>
+
+            {/* Error Message Feedback */}
+            {status === "error" && (
+              <motion.p 
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-red-500 text-xs flex items-center gap-1 ml-2 -mt-4"
+              >
+                <AlertCircle size={12} /> Failed to subscribe. Please try again.
+              </motion.p>
+            )}
           </div>
 
           {/* Spacer (Span 1 col) */}

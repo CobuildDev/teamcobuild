@@ -3,21 +3,53 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar"; 
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { Mail, MapPin, MessageSquare, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { Mail, MapPin, MessageSquare, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState("");
 
-  // Simulate form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  // Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "General Inquiry",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate network request
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact", // Switches to the 'Contact' template in your API
+          data: formData
+        }),
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+        // Optional: Reset form
+        setFormData({ name: "", email: "", subject: "General Inquiry", message: "" });
+      } else {
+        const data = await response.json();
+        setError(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please check your connection.");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -26,7 +58,7 @@ export default function ContactPage() {
 
       <main className="flex-grow pt-32 pb-20 px-4 md:px-6 relative">
         
-        {/* Background Grid (Consistent with Hero) */}
+        {/* Background Grid */}
         <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
           <div className="absolute right-0 top-0 -z-10 h-[310px] w-[310px] rounded-full bg-emerald-500 opacity-10 blur-[100px]" />
           <div className="absolute left-0 bottom-0 -z-10 h-[310px] w-[310px] rounded-full bg-blue-500 opacity-10 blur-[100px]" />
@@ -39,7 +71,7 @@ export default function ContactPage() {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+              className="text-4xl tracking-tighter md:text-5xl font-bold text-slate-900 mb-6"
             >
               Let's build something <span className="text-emerald-600">together.</span>
             </motion.h1>
@@ -53,12 +85,12 @@ export default function ContactPage() {
             </motion.p>
           </div>
 
-          {/* Main Contact Card (The Island) */}
+          {/* Main Contact Card */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="grid lg:grid-cols-5 bg-white border border-slate-200 rounded-3xl overflow-hidden"
+            className="grid lg:grid-cols-5 bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50"
           >
             
             {/* Left Column: Info & Context (2/5 width) */}
@@ -73,7 +105,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-900">Email us</p>
-                      <a href="mailto:hello@teamcobuild.com" className="text-slate-500 text-sm hover:text-emerald-600 transition-colors">hello@teamcobuild.com</a>
+                      <a href="mailto:cobuildofficial@hotmail.com" className="text-slate-500 text-sm hover:text-emerald-600 transition-colors">cobuildofficial@hotmail.com</a>
                     </div>
                   </div>
 
@@ -100,12 +132,11 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-900">Community</p>
-                      <p className="text-slate-500 text-sm mb-2">Join the conversation on our social channels.</p>
+                      <p className="text-slate-500 text-sm mb-2">Join the conversation.</p>
                       <div className="flex gap-3">
-                         {/* Simple Social placeholders */}
-                         <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
-                         <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
-                         <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
+                          {/* Social placeholders */}
+                          <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
+                          <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
                       </div>
                     </div>
                   </div>
@@ -143,6 +174,14 @@ export default function ContactPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  
+                  {error && (
+                    <div className="p-4 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100 flex items-center gap-2">
+                      <AlertCircle size={16} />
+                      {error}
+                    </div>
+                  )}
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-slate-700">Full Name</label>
@@ -150,7 +189,9 @@ export default function ContactPage() {
                         required
                         type="text" 
                         id="name" 
-                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Chinedu..."
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all placeholder:text-slate-400"
                       />
                     </div>
@@ -160,7 +201,9 @@ export default function ContactPage() {
                         required
                         type="email" 
                         id="email" 
-                        placeholder="john@example.com"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="you@example.com"
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all placeholder:text-slate-400"
                       />
                     </div>
@@ -170,6 +213,8 @@ export default function ContactPage() {
                     <label htmlFor="subject" className="text-sm font-medium text-slate-700">Subject</label>
                     <select 
                       id="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-slate-600"
                     >
                       <option>General Inquiry</option>
@@ -185,6 +230,8 @@ export default function ContactPage() {
                       required
                       id="message" 
                       rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder="Tell us a bit about what you're building or how we can help..."
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all placeholder:text-slate-400 resize-none"
                     />

@@ -1,9 +1,174 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { motion } from "framer-motion";
-import { Check, X, ArrowRight, ChefHat, Sparkles, Rocket, Store, BrainCircuit } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, X, ArrowRight, ChefHat, Sparkles, Rocket, Store, BrainCircuit, Loader2, Send } from "lucide-react";
+
+// --- Sub-Component: Order Modal (The "Waiter" taking the order) ---
+const PricingFormModal = ({ isOpen, onClose, packageName }: any) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    budget: "Not specified",
+    details: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "pricing", // Hitting the 'pricing' switch in your API
+          data: {
+            name: formData.name,
+            email: formData.email,
+            package: packageName,
+            budget: formData.budget,
+            details: formData.details
+          }
+        }),
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+      />
+
+      {/* Modal Content */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl z-10"
+      >
+        {/* Modal Header */}
+        <div className="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+          <div>
+            <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm uppercase tracking-wider mb-1">
+              <ChefHat size={16} />
+              Start Cooking
+            </div>
+            <h3 className="text-xl font-bold text-slate-900">
+              Inquiry: <span className="text-emerald-600">{packageName}</span>
+            </h3>
+          </div>
+          <button 
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-slate-300 transition-colors"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Modal Body */}
+        <div className="p-8">
+          {isSent ? (
+            <div className="text-center py-10">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4 mx-auto animate-bounce">
+                <Check size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">Order Received!</h3>
+              <p className="text-slate-500">
+                We've received your request for the <strong>{packageName}</strong>. We will review your details and send a custom quote to your email shortly.
+              </p>
+              <button onClick={onClose} className="mt-8 text-emerald-600 font-bold hover:underline">
+                Close Window
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Your Name</label>
+                <input 
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+                  placeholder="Chinedu..."
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                <input 
+                  required
+                  type="email"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+                  placeholder="you@company.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Budget Range (Optional)</label>
+                <select 
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all"
+                  value={formData.budget}
+                  onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                >
+                  <option>Not specified</option>
+                  <option>₦200k - ₦500k</option>
+                  <option>₦500k - ₦1M</option>
+                  <option>₦1M - ₦5M</option>
+                  <option>₦5M+</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Project Details</label>
+                <textarea 
+                  required
+                  rows={3}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all resize-none"
+                  placeholder="Tell us a bit about what you want to build..."
+                  value={formData.details}
+                  onChange={(e) => setFormData({...formData, details: e.target.value})}
+                />
+              </div>
+
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-4 mt-2 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <> <Loader2 size={18} className="animate-spin" /> Sending Request... </>
+                ) : (
+                  <> Start Discussion <Send size={18} /> </>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 // --- Sub-Component: Pricing Card ---
 const PricingCard = ({ 
@@ -12,7 +177,8 @@ const PricingCard = ({
   description, 
   features, 
   highlight = false,
-  delay 
+  delay,
+  onSelect // New Prop
 }: any) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -84,8 +250,10 @@ const PricingCard = ({
       ))}
     </div>
 
-    {/* CTA Button */}
-    <button className={`w-full py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 ${
+    {/* CTA Button - Triggers onSelect */}
+    <button 
+      onClick={onSelect}
+      className={`w-full py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 ${
       highlight 
         ? "bg-emerald-500 hover:bg-emerald-400 text-slate-900" 
         : "bg-slate-100 hover:bg-slate-200 text-slate-900"
@@ -97,6 +265,8 @@ const PricingCard = ({
 );
 
 export default function PricingPage() {
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
       <Navbar />
@@ -126,29 +296,29 @@ export default function PricingPage() {
         <section className="max-w-7xl mx-auto mb-24">
           <div className="grid md:grid-cols-3 gap-8 items-start">
             
-            {/* Card 1: Small Biz / Branding */}
             <PricingCard 
               delay={0.1}
               title="Digital Presence"
               icon={Store}
               description="Perfect for local businesses needing a modern website and brand identity."
+              onSelect={() => setSelectedPackage("Digital Presence")}
               features={[
                 "Custom Landing Page Design",
                 "Next.js High Performance Site",
                 "Mobile Responsiveness",
-                "Brand Style Guide (Logo/Colors)",
+                "Brand Style Guide",
                 "Domain & Hosting Setup",
                 "Google Business Profile Setup"
               ]}
             />
 
-            {/* Card 2: The Startup MVP (Highlighted) */}
             <PricingCard 
               delay={0.2}
               highlight={true}
               title="MVP Build"
               icon={Rocket}
               description="For founders who need to get a functional product to market fast."
+              onSelect={() => setSelectedPackage("MVP Build")}
               features={[
                 "Product Strategy Workshop",
                 "High-Fidelity UI/UX Design",
@@ -160,27 +330,26 @@ export default function PricingPage() {
               ]}
             />
 
-            {/* Card 3: Enterprise / Custom */}
             <PricingCard 
               delay={0.3}
               title="Custom Engineering"
               icon={BrainCircuit}
               description="Complex systems, automations, and long-term technical partnership."
+              onSelect={() => setSelectedPackage("Custom Engineering")}
               features={[
                 "System Architecture Design",
                 "Custom API Development",
                 "Third-party Integrations",
                 "Legacy System Migration",
                 "Performance Optimization",
-                "Dedicated Engineering Team",
-                "SLA & Priority Support"
+                "Dedicated Engineering Team"
               ]}
             />
 
           </div>
         </section>
 
-        {/* 3. The "Why no price?" FAQ */}
+        {/* 3. The FAQ */}
         <section className="max-w-3xl mx-auto pb-20">
           <div className="bg-emerald-50 rounded-3xl p-8 border border-emerald-100 flex gap-4">
             <div className="hidden md:block bg-white p-3 rounded-full h-max shadow-sm text-emerald-600">
@@ -201,6 +370,18 @@ export default function PricingPage() {
       </main>
 
       <Footer />
+
+      {/* 4. The Modal Triggered by State */}
+      <AnimatePresence>
+        {selectedPackage && (
+          <PricingFormModal 
+            isOpen={!!selectedPackage}
+            onClose={() => setSelectedPackage(null)}
+            packageName={selectedPackage}
+          />
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

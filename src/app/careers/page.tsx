@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Briefcase, 
   MapPin, 
@@ -11,7 +11,11 @@ import {
   Users, 
   Cpu, 
   HeartHandshake, 
-  Terminal 
+  Terminal,
+  X,
+  Loader2,
+  CheckCircle2,
+  Link as LinkIcon
 } from "lucide-react";
 
 // --- Data: Open Roles ---
@@ -45,14 +49,176 @@ const ROLES = [
   }
 ];
 
+// --- Sub-Component: Application Modal ---
+const ApplicationModal = ({ isOpen, onClose, roleTitle }: any) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    link: "",
+    coverLetter: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "job", // Switches to the 'Job' template in your API
+          data: {
+            role: roleTitle,
+            ...formData
+          }
+        }),
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+      />
+
+      {/* Modal Content */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl z-10"
+      >
+        {/* Header */}
+        <div className="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+          <div>
+            <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm uppercase tracking-wider mb-1">
+              <Terminal size={16} />
+              Application
+            </div>
+            <h3 className="text-xl font-bold text-slate-900">
+              {roleTitle}
+            </h3>
+          </div>
+          <button 
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center hover:bg-slate-300 transition-colors"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-8">
+          {isSent ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4 mx-auto animate-bounce">
+                <CheckCircle2 size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">Application Sent!</h3>
+              <p className="text-slate-500 mb-8">
+                We've received your pitch. We'll review your links and get back to you if there's a fit.
+              </p>
+              <button onClick={onClose} className="text-emerald-600 font-bold hover:underline">
+                Close Window
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                  <input 
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 outline-none transition-all"
+                    placeholder="Chinedu..."
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                  <input 
+                    required
+                    type="email"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 outline-none transition-all"
+                    placeholder="you@gmail.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
+                  <LinkIcon size={14} /> Link to CV / Portfolio / GitHub
+                </label>
+                <input 
+                  required
+                  type="url"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 outline-none transition-all"
+                  placeholder="https://..."
+                  value={formData.link}
+                  onChange={(e) => setFormData({...formData, link: e.target.value})}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Why do you want to join?</label>
+                <textarea 
+                  required
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 outline-none transition-all resize-none"
+                  placeholder="Tell us about what you've built before..."
+                  value={formData.coverLetter}
+                  onChange={(e) => setFormData({...formData, coverLetter: e.target.value})}
+                />
+              </div>
+
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-3.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+              >
+                {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : "Submit Application"}
+              </button>
+            </form>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 // --- Sub-Component: Role Card ---
-const RoleCard = ({ role, index }: { role: any, index: number }) => (
+const RoleCard = ({ role, index, onClick }: { role: any, index: number, onClick: () => void }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay: index * 0.1 }}
-    className="group bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 relative overflow-hidden"
+    onClick={onClick}
+    className="group bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 relative overflow-hidden cursor-pointer active:scale-[0.98]"
   >
     <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
        <ArrowRight className="text-emerald-500 -translate-x-4 group-hover:translate-x-0 transition-transform duration-300" />
@@ -106,6 +272,8 @@ const CultureValue = ({ icon: Icon, title, desc }: any) => (
 );
 
 export default function CareersPage() {
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
       <Navbar />
@@ -172,7 +340,12 @@ export default function CareersPage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ROLES.map((role, idx) => (
-              <RoleCard key={role.id} role={role} index={idx} />
+              <RoleCard 
+                key={role.id} 
+                role={role} 
+                index={idx} 
+                onClick={() => setSelectedRole(role.title)}
+              />
             ))}
             
             {/* "General Application" Card */}
@@ -180,7 +353,8 @@ export default function CareersPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-slate-900 rounded-2xl p-6 flex flex-col justify-between text-white relative overflow-hidden group"
+              onClick={() => setSelectedRole("General Application")}
+              className="bg-slate-900 rounded-2xl p-6 flex flex-col justify-between text-white relative overflow-hidden group cursor-pointer hover:shadow-2xl hover:shadow-slate-900/20 active:scale-[0.98] transition-all"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500 rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity" />
               
@@ -201,19 +375,21 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        {/* <section className="max-w-3xl mx-auto text-center pb-20">
-          <p className="text-slate-500 mb-6">
-            Not ready to apply? Join our community discord to see how we work.
-          </p>
-          <a href="#" className="text-emerald-600 font-bold hover:underline">
-            Join the Discord Server &rarr;
-          </a>
-        </section> */}
-
       </main>
 
       <Footer />
+
+      {/* 4. Application Modal */}
+      <AnimatePresence>
+        {selectedRole && (
+          <ApplicationModal 
+            isOpen={!!selectedRole}
+            roleTitle={selectedRole}
+            onClose={() => setSelectedRole(null)}
+          />
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
