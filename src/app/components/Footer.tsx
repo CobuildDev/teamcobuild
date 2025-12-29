@@ -16,7 +16,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 
-// Utility for cleaner tailwind classes
+// Merge and normalize Tailwind class lists
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -56,12 +56,10 @@ const handleSubscribe = async (e: React.FormEvent) => {
     setStatus("loading");
 
     try {
-      // FIX: Point to the dedicated Newsletter route (Brevo)
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // FIX: Send exactly what api/newsletter/route.ts expects (just the email)
-        body: JSON.stringify({ email }), 
+        body: JSON.stringify({ email }),
       });
 
       if (response.ok) {
@@ -78,15 +76,12 @@ const handleSubscribe = async (e: React.FormEvent) => {
 
   return (
     <footer className="w-full py-6 px-4 md:px-6 mt-12">
-      {/* Main "Island" Container */}
       <div className="max-w-7xl mx-auto bg-slate-50/50 border border-slate-200 rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden relative">
-        
-        {/* Background decorative blob */}
         <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-emerald-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
           
-          {/* Column 1: Brand & Newsletter (Span 4 cols) */}
+          {/* Brand & Newsletter column */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <Image
               src="/icons/teamcobuild.svg"
@@ -98,7 +93,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
               Building the future of local software solutions. Join our community to start building better together.
             </p>
             
-            {/* Newsletter Pill */}
+            {/* Newsletter form */}
             <form className="relative max-w-sm" onSubmit={handleSubscribe}>
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               
@@ -136,7 +131,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
               </button>
             </form>
 
-            {/* Error Message Feedback */}
+            {/* Error feedback */}
             {status === "error" && (
               <motion.p 
                 initial={{ opacity: 0, y: -5 }}
@@ -148,12 +143,10 @@ const handleSubscribe = async (e: React.FormEvent) => {
             )}
           </div>
 
-          {/* Spacer (Span 1 col) */}
           <div className="hidden lg:block lg:col-span-1" />
 
-          {/* Links Section (Span 7 cols) */}
           <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
-            {/* Group 1 */}
+            {/* Links group 1 */}
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Product</h4>
               <ul className="flex flex-col gap-2">
@@ -164,7 +157,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
               </ul>
             </div>
 
-            {/* Group 2 */}
+            {/* Links group 2 */}
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Company</h4>
               <ul className="flex flex-col gap-2">
@@ -175,7 +168,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
               </ul>
             </div>
 
-            {/* Group 3 */}
+            {/* Links group 3 */}
             <div className="flex flex-col gap-4">
               <h4 className="font-semibold text-slate-900 text-sm">Resources</h4>
               <ul className="flex flex-col gap-2">
@@ -188,10 +181,8 @@ const handleSubscribe = async (e: React.FormEvent) => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="h-px w-full bg-slate-200 my-10" />
 
-        {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-sm text-slate-400">
             &copy; {currentYear} Team Cobuild. All rights reserved.

@@ -27,28 +27,40 @@ export default function ProposalPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle Submission to your API Route
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setError("");
+  // Submit the form data to our API route as JSON
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
 
-  try {
-    const response = await fetch("/api/email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // UPDATE THIS PART:
-      body: JSON.stringify({
-        type: "proposal", 
-        data: formData // Pass the whole formData object as 'data'
-      }),
-    });
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // ... rest of your code (response handling)
-  } catch (err) {
-    // ... error handling
-  }
-};
+      if (response.ok) {
+        setIsSent(true);
+        setFormData({
+          name: "",
+          email: "",
+          title: "",
+          category: "Commerce",
+          problem: "",
+          solution: "",
+          involvement: "I want to help build it",
+        });
+      } else {
+        const data = await response.json();
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Failed to connect to the server. Check your internet connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
       <Navbar />
