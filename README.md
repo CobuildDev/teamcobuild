@@ -11,6 +11,8 @@ This is the official landing page for Team Cobuild. It is designed to introduce 
 * Tailwind CSS
 * Framer Motion
 * Lucide React
+* Brevo
+* Resend Email API
 
 <!-- ## Getting Started
 Clone the repository and open the `index.html` file in your browser to view the page locally. -->
