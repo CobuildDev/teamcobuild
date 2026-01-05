@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Navbar from "./components/Navbar"; 
+import Partners from "./components/partners";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";  // The Hero component we just created
 import { motion } from "framer-motion";
@@ -95,7 +96,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+        <Partners />
         {/* 5. Pre-Launch CTA */}
         <section className="px-4 md:px-6 pb-20">
           <div className="max-w-5xl mx-auto bg-slate-900 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
