@@ -14,6 +14,7 @@ const LOGOS = [
   { name: "Partner 7", src: "/partners/PCF.png" },
   { name: "Partner 8", src: "/partners/cadixx.png" },
   { name: "Partner 9", src: "/partners/openquanta.png" },
+  { name: "Partner 10", src: "/partners/oba.svg" },
 ];
 
 export default function Partners() {
@@ -40,7 +41,7 @@ export default function Partners() {
           // This creates a perfect, seamless loop.
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 20, // Adjust speed: higher = slower
+            duration: 40, // Adjust speed: higher = slower
             ease: "linear",
             repeat: Infinity,
           }}
