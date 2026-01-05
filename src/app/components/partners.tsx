@@ -12,8 +12,8 @@ const LOGOS = [
   { name: "Partner 5", src: "/partners/kingdesigns.png" },
   { name: "Partner 6", src: "/partners/sdachurchmawa.png" },
   { name: "Partner 7", src: "/partners/PCF.png" },
-    { name: "Partner 8", src: "/partners/cadixx.png" },
-    { name: "Partner 9", src: "/partners/openquanta.png" },
+  { name: "Partner 8", src: "/partners/cadixx.png" },
+  { name: "Partner 9", src: "/partners/openquanta.png" },
 ];
 
 export default function Partners() {
@@ -54,6 +54,7 @@ export default function Partners() {
               <Image
                 src={logo.src}
                 alt={logo.name}
+                sizes=""
                 fill
                 className="object-contain"
               />
