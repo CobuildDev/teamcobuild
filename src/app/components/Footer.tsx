@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Twitter, 
-  Linkedin, 
-  Github, 
-  Instagram, 
-  ArrowRight, 
+import {
+  Twitter,
+  Linkedin,
+  Github,
+  Instagram,
+  ArrowRight,
   Mail,
   Loader2,
   CheckCircle2,
@@ -15,6 +15,7 @@ import {
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import Link from "next/link";
 
 // Merge and normalize Tailwind class lists
 function cn(...inputs: ClassValue[]) {
@@ -22,23 +23,26 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const SocialLink = ({ href, icon: Icon }: { href: string; icon: any }) => (
-  <motion.a
-    href={href}
+  <motion.div
     whileHover={{ y: -3 }}
-    className="p-2 bg-white border border-slate-200 rounded-full text-slate-500 hover:text-emerald-600 hover:border-emerald-200 transition-colors shadow-sm"
   >
-    <Icon size={18} />
-  </motion.a>
+    <Link
+      href={href}
+      className="p-2 bg-white border border-slate-200 rounded-full text-slate-500 hover:text-emerald-600 hover:border-emerald-200 transition-colors shadow-sm block"
+    >
+      <Icon size={18} />
+    </Link>
+  </motion.div>
 );
 
 const FooterLink = ({ href, label }: { href: string; label: string }) => (
   <li>
-    <a
+    <Link
       href={href}
       className="text-sm text-slate-500 hover:text-slate-900 transition-colors inline-block py-1"
     >
       {label}
-    </a>
+    </Link>
   </li>
 );
 
@@ -49,7 +53,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-const handleSubscribe = async (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
@@ -64,7 +68,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
 
       if (response.ok) {
         setStatus("success");
-        setEmail(""); 
+        setEmail("");
         setTimeout(() => setStatus("idle"), 3000);
       } else {
         setStatus("error");
@@ -80,7 +84,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
         <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-emerald-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
-          
+
           {/* Brand & Newsletter column */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <Image
@@ -92,11 +96,11 @@ const handleSubscribe = async (e: React.FormEvent) => {
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
               Building the future of local software solutions. Join our community to start building better together.
             </p>
-            
+
             {/* Newsletter form */}
             <form className="relative max-w-sm" onSubmit={handleSubscribe}>
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              
+
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -105,19 +109,19 @@ const handleSubscribe = async (e: React.FormEvent) => {
                 disabled={status === "loading" || status === "success"}
                 className={cn(
                   "w-full bg-white border rounded-full py-2.5 pl-10 pr-12 text-sm outline-none transition-all placeholder:text-slate-400",
-                  status === "error" 
-                    ? "border-red-300 focus:ring-2 focus:ring-red-500/20" 
+                  status === "error"
+                    ? "border-red-300 focus:ring-2 focus:ring-red-500/20"
                     : "border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 )}
               />
-              
-              <button 
+
+              <button
                 type="submit"
                 disabled={status === "loading" || status === "success"}
                 className={cn(
                   "absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-full transition-all flex items-center justify-center",
-                  status === "success" 
-                    ? "bg-emerald-500 text-white cursor-default" 
+                  status === "success"
+                    ? "bg-emerald-500 text-white cursor-default"
                     : "bg-slate-900 text-white hover:bg-emerald-600"
                 )}
               >
@@ -133,7 +137,7 @@ const handleSubscribe = async (e: React.FormEvent) => {
 
             {/* Error feedback */}
             {status === "error" && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-red-500 text-xs flex items-center gap-1 ml-2 -mt-4"
@@ -185,14 +189,14 @@ const handleSubscribe = async (e: React.FormEvent) => {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-sm text-slate-400">
-            &copy; {currentYear} Team Cobuild. All rights reserved.
+            &copy; <span suppressHydrationWarning>{currentYear}</span> Team Cobuild. All rights reserved.
           </p>
-          
+
           <div className="flex items-center gap-3">
-            <SocialLink href="#" icon={Twitter} />
-            <SocialLink href="#" icon={Linkedin} />
-            <SocialLink href="#" icon={Github} />
-            <SocialLink href="#" icon={Instagram} />
+            <SocialLink href="https://x.com/teamCobuild" icon={Twitter} />
+            <SocialLink href="https://www.linkedin.com/company/team-cobuild" icon={Linkedin} />
+            <SocialLink href="https://github.com/CobuildDev" icon={Github} />
+            <SocialLink href="https://www.instagram.com/team.cobuild/" icon={Instagram} />
           </div>
         </div>
       </div>

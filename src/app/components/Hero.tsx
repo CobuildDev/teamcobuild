@@ -1,19 +1,20 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Terminal, Github } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 bg-white">
-      
+
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-emerald-500 opacity-20 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center text-center">
-        
+
         {/* 1. Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,7 +49,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-slate-500 max-w-2xl mb-10 leading-relaxed"
         >
-          We are teamCoBuild. A community-centered collective engineering the 
+          We are teamCoBuild. A community-centered collective engineering the
           digital infrastructure for our city and beyond. We build products that matter.
         </motion.p>
 
@@ -59,15 +60,23 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-slate-900 px-8 font-medium text-white transition-all duration-300 hover:bg-slate-800 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20">
+          <Link
+            href="/project"
+            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-slate-900 px-8 font-medium text-white transition-all duration-300 hover:bg-slate-800 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
+          >
             <span className="mr-2">Explore Our Projects</span>
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </button>
-          
-          <button className="group inline-flex h-12 items-center justify-center rounded-full bg-white px-8 font-medium text-slate-600 border border-slate-200 transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300">
-            <Github size={18} className="mr-2 text-slate-400 group-hover:text-black" />
-            <span>Follow our Build</span>
-          </button>
+          </Link>
+
+          <Link
+            href="https://github.com/CobuildDev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-white border border-slate-200 px-8 font-medium text-slate-900 transition-all duration-300 hover:bg-slate-50 hover:scale-105 hover:shadow-lg"
+          >
+            <Github size={18} className="mr-2" />
+            <span>Star on GitHub</span>
+          </Link>
         </motion.div>
 
         {/* 5. Hero Visual (The "Builder" Window) */}
@@ -79,10 +88,10 @@ export default function Hero() {
         >
           {/* Decorative Glow */}
           <div className="absolute -inset-1 bg-liner-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-20" />
-          
+
           {/* Window Container */}
           <div className="relative bg-slate-950 rounded-xl shadow-2xl border border-slate-800 overflow-hidden text-left">
-            
+
             {/* Window Header */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800 bg-slate-900/50">
               <div className="flex gap-1.5">
@@ -105,16 +114,16 @@ export default function Hero() {
                   <span className="text-slate-400">teamcobuild init --location="Aba, NG"</span>
                 </div>
                 <div className="text-slate-500 pl-4 mb-2">Initializing new local ecosystem...</div>
-                
+
                 <div className="flex gap-2">
                   <span className="text-emerald-400">➜</span>
                   <span className="text-blue-400">~</span>
                   <span className="text-slate-400">teamcobuild focus</span>
                 </div>
                 <div className="pl-4 text-emerald-300">
-                  [✓] Identifying local pain points<br/>
-                  [✓] Designing scalable architecture<br/>
-                  [✓] Empowering community developers<br/>
+                  [✓] Identifying local pain points<br />
+                  [✓] Designing scalable architecture<br />
+                  [✓] Empowering community developers<br />
                   [✓] <span className="animate-pulse">Building MVP...</span>
                 </div>
               </div>

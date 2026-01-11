@@ -5,16 +5,17 @@ import { motion } from "framer-motion";
 
 // --- Configuration ---
 const LOGOS = [
-  { name: "Partner 1", src: "/partners/devdarl.png" },
   { name: "Partner 2", src: "/partners/blutech.png" },
-  { name: "Partner 3", src: "/partners/divinefavourfotoshop.png" },
-  { name: "Partner 4", src: "/partners/ighub.webp" },
+  { name: "Partner 1", src: "/partners/devdarl.png" },
+  // { name: "Partner 3", src: "/partners/divinefavourfotoshop.png" },
   { name: "Partner 5", src: "/partners/kingdesigns.png" },
-  { name: "Partner 6", src: "/partners/sdachurchmawa.png" },
-  { name: "Partner 7", src: "/partners/PCF.png" },
-  { name: "Partner 8", src: "/partners/cadixx.png" },
+  { name: "Partner 4", src: "/partners/ighub.webp" },
+
+  // { name: "Partner 6", src: "/partners/sdachurchmawa.png" },
+  // { name: "Partner 7", src: "/partners/PCF.png" },
+  // { name: "Partner 8", src: "/partners/cadixx.png" },
   { name: "Partner 9", src: "/partners/openquanta.png" },
-  { name: "Partner 10", src: "/partners/oba.svg" },
+  // { name: "Partner 10", src: "/partners/oba.svg" },
 ];
 
 export default function Partners() {

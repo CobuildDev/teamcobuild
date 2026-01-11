@@ -145,14 +145,7 @@ export default function PrivacyPage() {
 
             <SectionHeading title="7. Contact Us" />
             <p>
-              If you have any questions about these Privacy Policy, please contact us at{" "}
-              <a
-                href="mailto:hello@teamcobuild.com"
-                className="text-emerald-600 hover:underline"
-              >
-                hello@teamcobuild.com
-              </a>
-              .
+              If you have any questions about privacy policy, please contact us at <a href="mailto:cobuildofficial@hotmail.com" className="text-emerald-600 hover:underline">cobuildofficial@hotmail.com</a>.
             </p>
           </article>
         </motion.div>

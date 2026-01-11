@@ -5,6 +5,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import Link from "next/link";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -53,19 +54,19 @@ export default function Navbar() {
               : "bg-white/50 backdrop-blur-md border-transparent py-3 pl-6 pr-3"
           )}
         >
-          <a href="/">
+          <Link href="/">
             <Image
               src="/icons/teamcobuild.svg"
               alt="teamCobuild Logo"
               width={160}
               height={28}
             />
-          </a>
+          </Link>
 
           {/* 2. Desktop Nav with Sliding Pill Animation */}
           <div className="hidden md:flex items-center gap-1 bg-slate-100/50 p-1 rounded-full border border-slate-200/50 ml-4">
             {navLinks.map((link, index) => (
-              <a
+              <Link
                 key={link.title}
                 href={link.href}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -90,12 +91,12 @@ export default function Navbar() {
                   )}
                 </AnimatePresence>
                 <span className="relative z-10">{link.title}</span>
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* 3. Actions (Desktop) */}
-          <a href="/contact" className="hidden md:flex items-center gap-4">
+          <Link href="/contact" className="hidden md:flex items-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -107,7 +108,7 @@ export default function Navbar() {
                 className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </motion.button>
-          </a>
+          </Link>
 
           {/* 4. Mobile Toggle */}
           <button
@@ -131,27 +132,30 @@ export default function Navbar() {
               <div className="bg-white/90 backdrop-blur-xl border border-slate-200 rounded-3xl shadow-xl overflow-hidden p-2">
                 <div className="flex flex-col gap-1">
                   {navLinks.map((link, idx) => (
-                    <motion.a
+                    <motion.div
                       key={link.title}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      href={link.href}
-                      className="px-4 py-3 text-slate-600 font-medium rounded-xl hover:bg-slate-100 hover:text-slate-900 transition-colors"
-                      onClick={() => setIsOpen(false)}
                     >
-                      {link.title}
-                    </motion.a>
+                      <Link
+                        href={link.href}
+                        className="block px-4 py-3 text-slate-600 font-medium rounded-xl hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.title}
+                      </Link>
+                    </motion.div>
                   ))}
                   <div className="h-px bg-slate-100 my-1" />
-                  <a
+                  <Link
                     href="/contact"
                     className="flex items-center justify-between px-4 py-3 font-semibold text-white bg-green-700 rounded-xl hover:bg-green-600 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     Contact Us
                     <ArrowUpRight size={18} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

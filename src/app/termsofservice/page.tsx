@@ -24,7 +24,7 @@ export default function TermsPage() {
       <Navbar />
 
       <main className="flex-grow pt-32 px-4 md:px-6 pb-20">
-        
+
         {/* Background Grid */}
         <div className="fixed inset-0 -z-10 h-full w-full bg-slate-50 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
 
@@ -58,7 +58,7 @@ export default function TermsPage() {
           <div className="absolute top-0 left-0 w-full h-1.5" />
 
           <article className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
-            
+
             <p className="text-lg mb-8">
               Welcome to <strong>teamCobuild</strong> ("we," "our," or "us"). By accessing or using our website, services, and experimental software (collectively, the "Services"), you agree to be bound by these Terms.
             </p>
@@ -115,7 +115,7 @@ export default function TermsPage() {
             <div className="mt-12 pt-8 border-t border-slate-100">
               <h3 className="font-bold text-slate-900 mb-2">Questions?</h3>
               <p>
-                If you have any questions about these Terms, please contact us at <a href="mailto:hello@teamcobuild.com" className="text-emerald-600 hover:underline">hello@teamcobuild.com</a>.
+                If you have any questions about these Terms, please contact us at <a href="mailto:cobuildofficial@hotmail.com" className="text-emerald-600 hover:underline">cobuildofficial@hotmail.com</a>.
               </p>
             </div>
 
