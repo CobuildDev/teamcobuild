@@ -34,12 +34,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-900 max-w-4xl mb-6"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-700 max-w-4xl mb-6"
         >
-          Solving local problems with <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
-            world-class software.
-          </span>
+          Solving local problems with world-class software.
         </motion.h1>
 
         {/* 3. Subheadline */}
