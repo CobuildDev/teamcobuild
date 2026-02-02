@@ -4,7 +4,7 @@
 This is the official landing page for Team Cobuild. It is designed to introduce visitors to our community-centered software startup and share our mission of building practical solutions for local problems, starting here in Nigeria.
 
 ## Live Demo
-[https://teamcobuild.vercel.app]
+[https://teamcobuild.com.ng]
 
 ## Core Technologies
 * NextJs
