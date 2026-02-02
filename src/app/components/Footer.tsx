@@ -28,7 +28,7 @@ const SocialLink = ({ href, icon: Icon }: { href: string; icon: any }) => (
   >
     <Link
       href={href}
-      className="p-2 bg-white border border-slate-200 rounded-full text-slate-500 hover:text-emerald-600 hover:border-emerald-200 transition-colors shadow-sm block"
+      className="p-2 bg-white border border-slate-200 rounded-full text-slate-500 hover:text-primary hover:border-primary/30 transition-colors shadow-sm block"
     >
       <Icon size={18} />
     </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
   return (
     <footer className="w-full py-6 px-4 md:px-6 mt-12">
       <div className="max-w-7xl mx-auto bg-slate-50/50 border border-slate-200 rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden relative">
-        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-emerald-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
 
@@ -111,7 +111,7 @@ export default function Footer() {
                   "w-full bg-white border rounded-full py-2.5 pl-10 pr-12 text-sm outline-none transition-all placeholder:text-slate-400",
                   status === "error"
                     ? "border-red-300 focus:ring-2 focus:ring-red-500/20"
-                    : "border-slate-200 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                    : "border-slate-200 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                 )}
               />
 
@@ -121,8 +121,8 @@ export default function Footer() {
                 className={cn(
                   "absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-full transition-all flex items-center justify-center",
                   status === "success"
-                    ? "bg-emerald-500 text-white cursor-default"
-                    : "bg-slate-900 text-white hover:bg-emerald-600"
+                    ? "bg-primary text-white cursor-default"
+                    : "bg-slate-900 text-white hover:bg-primary"
                 )}
               >
                 {status === "loading" ? (

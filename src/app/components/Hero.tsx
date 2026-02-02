@@ -10,7 +10,7 @@ export default function Hero() {
 
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-emerald-500 opacity-20 blur-[100px]" />
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center text-center">
@@ -20,11 +20,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-medium mb-6"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-6"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           Building from Aba, Nigeria
         </motion.div>
@@ -37,7 +37,7 @@ export default function Hero() {
           className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-900 max-w-4xl mb-6"
         >
           Solving local problems with <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
             world-class software.
           </span>
         </motion.h1>
@@ -62,7 +62,7 @@ export default function Hero() {
         >
           <Link
             href="/project"
-            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-slate-900 px-8 font-medium text-white transition-all duration-300 hover:bg-slate-800 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
+            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-secondary px-8 font-medium text-white transition-all duration-300 hover:bg-secondary/90 hover:scale-105 hover:shadow-lg hover:shadow-secondary/20"
           >
             <span className="mr-2">Explore Our Projects</span>
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -87,7 +87,7 @@ export default function Hero() {
           className="relative mt-20 w-full max-w-5xl"
         >
           {/* Decorative Glow */}
-          <div className="absolute -inset-1 bg-liner-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-20" />
+          <div className="absolute -inset-1 bg-liner-to-r from-primary to-accent rounded-2xl blur opacity-20" />
 
           {/* Window Container */}
           <div className="relative bg-slate-950 rounded-xl shadow-2xl border border-slate-800 overflow-hidden text-left">
@@ -109,18 +109,18 @@ export default function Hero() {
             <div className="p-6 md:p-8 font-mono text-sm md:text-base text-slate-300 overflow-x-auto">
               <div className="flex flex-col gap-2">
                 <div className="flex gap-2">
-                  <span className="text-emerald-400">➜</span>
-                  <span className="text-blue-400">~</span>
+                  <span className="text-primary">➜</span>
+                  <span className="text-accent">~</span>
                   <span className="text-slate-400">teamcobuild init --location="Aba, NG"</span>
                 </div>
                 <div className="text-slate-500 pl-4 mb-2">Initializing new local ecosystem...</div>
 
                 <div className="flex gap-2">
-                  <span className="text-emerald-400">➜</span>
-                  <span className="text-blue-400">~</span>
+                  <span className="text-primary">➜</span>
+                  <span className="text-accent">~</span>
                   <span className="text-slate-400">teamcobuild focus</span>
                 </div>
-                <div className="pl-4 text-emerald-300">
+                <div className="pl-4 text-primary/80">
                   [✓] Identifying local pain points<br />
                   [✓] Designing scalable architecture<br />
                   [✓] Empowering community developers<br />

@@ -15,9 +15,9 @@ const ValueCard = ({ icon: Icon, title, description, delay }: any) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all duration-300"
+    className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
   >
-    <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 text-emerald-600">
+    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 text-primary">
       <Icon size={24} />
     </div>
     <h3 className="text-xl font-bold text-slate-900 mb-2">{title}</h3>
@@ -35,7 +35,7 @@ const TechItem = ({ icon: Icon, label }: any) => (
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-white selection:bg-primary/20 selection:text-primary">
 
       {/* 1. Navigation (Floating) */}
       <Navbar />
@@ -102,7 +102,7 @@ export default function Home() {
         <section className="px-4 md:px-6 pb-20">
           <div className="max-w-5xl mx-auto bg-slate-900 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
             {/* Abstract Background Shapes */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-500 via-slate-900 to-slate-900 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-slate-900 to-slate-900 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center">
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -112,7 +112,7 @@ export default function Home() {
                 We are currently in the ideation and development phase. Follow us on GitHub to see what we are cooking up next.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="https://github.com/CobuildDev" className="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-full transition-colors">
+                <Link href="https://github.com/CobuildDev" className="px-8 py-3 bg-secondary hover:bg-secondary/90 text-white font-bold rounded-full transition-colors">
                   View GitHub Organization
                 </Link>
                 <Link href="/contact" className="px-8 py-3 bg-transparent border border-slate-700 text-white hover:bg-slate-800 font-medium rounded-full transition-colors">

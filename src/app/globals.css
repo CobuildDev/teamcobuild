@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #1E7F41;
+  --color-secondary: #FF6B00;
+  --color-accent: #00C2FF;
+  --color-highlight: #FFD600;
+}
+
 body {
   letter-spacing: -0.03em;
 }

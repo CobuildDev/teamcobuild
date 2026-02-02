@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "../components/Navbar"; 
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { Mail, MapPin, MessageSquare, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
@@ -57,7 +57,7 @@ export default function ContactPage() {
       <Navbar />
 
       <main className="flex-grow pt-32 pb-20 px-4 md:px-6 relative">
-        
+
         {/* Background Grid */}
         <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
           <div className="absolute right-0 top-0 -z-10 h-[310px] w-[310px] rounded-full bg-emerald-500 opacity-10 blur-[100px]" />
@@ -65,17 +65,17 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          
+
           {/* Header Section */}
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl tracking-tighter md:text-5xl font-bold text-slate-900 mb-6"
             >
-              Let's build something <span className="text-emerald-600">together.</span>
+              Let's build something together.
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -86,18 +86,18 @@ export default function ContactPage() {
           </div>
 
           {/* Main Contact Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="grid lg:grid-cols-5 bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50"
           >
-            
+
             {/* Left Column: Info & Context (2/5 width) */}
             <div className="lg:col-span-2 bg-slate-50/50 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-bold text-slate-900 mb-6">Contact Information</h3>
-                
+
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-emerald-600 shrink-0 shadow-sm">
@@ -134,9 +134,9 @@ export default function ContactPage() {
                       <p className="text-sm font-semibold text-slate-900">Community</p>
                       <p className="text-slate-500 text-sm mb-2">Join the conversation.</p>
                       <div className="flex gap-3">
-                          {/* Social placeholders */}
-                          <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
-                          <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
+                        {/* Social placeholders */}
+                        <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
+                        <div className="w-8 h-8 rounded bg-slate-200/50 hover:bg-emerald-100 transition-colors cursor-pointer" />
                       </div>
                     </div>
                   </div>
@@ -153,7 +153,7 @@ export default function ContactPage() {
             {/* Right Column: The Form (3/5 width) */}
             <div className="lg:col-span-3 p-8 md:p-12 bg-white relative">
               {isSent ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center py-10"
@@ -165,7 +165,7 @@ export default function ContactPage() {
                   <p className="text-slate-500 max-w-xs mx-auto mb-8">
                     Thanks for reaching out to Team CoBuild. We'll get back to you shortly.
                   </p>
-                  <button 
+                  <button
                     onClick={() => setIsSent(false)}
                     className="text-sm font-medium text-slate-900 hover:text-emerald-600 underline"
                   >
@@ -174,7 +174,7 @@ export default function ContactPage() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  
+
                   {error && (
                     <div className="p-4 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100 flex items-center gap-2">
                       <AlertCircle size={16} />
@@ -185,10 +185,10 @@ export default function ContactPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-slate-700">Full Name</label>
-                      <input 
+                      <input
                         required
-                        type="text" 
-                        id="name" 
+                        type="text"
+                        id="name"
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Chinedu..."
@@ -197,10 +197,10 @@ export default function ContactPage() {
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-slate-700">Email Address</label>
-                      <input 
+                      <input
                         required
-                        type="email" 
-                        id="email" 
+                        type="email"
+                        id="email"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="you@example.com"
@@ -211,7 +211,7 @@ export default function ContactPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="subject" className="text-sm font-medium text-slate-700">Subject</label>
-                    <select 
+                    <select
                       id="subject"
                       value={formData.subject}
                       onChange={handleChange}
@@ -226,9 +226,9 @@ export default function ContactPage() {
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-slate-700">Message</label>
-                    <textarea 
+                    <textarea
                       required
-                      id="message" 
+                      id="message"
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
@@ -238,7 +238,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="pt-2">
-                    <button 
+                    <button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full bg-slate-900 text-white font-semibold h-12 rounded-xl hover:bg-slate-800 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"

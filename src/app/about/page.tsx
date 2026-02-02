@@ -16,11 +16,11 @@ const StatItem = ({ label, value }: { label: string; value: string }) => (
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
+    <div className="min-h-screen bg-white selection:bg-primary/20 selection:text-primary flex flex-col">
       <Navbar />
 
       <main className="grow pt-32 px-4 md:px-6">
-        
+
         {/* 1. Hero / Manifesto */}
         <section className="max-w-5xl mx-auto mb-24 text-center">
           <motion.div
@@ -29,12 +29,12 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium mb-6">
-              <MapPin size={12} className="text-emerald-600" />
+              <MapPin size={12} className="text-secondary" />
               <span>Born in Aba, Abia State</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 tracking-tighter">
-              We are engineering the <br className="hidden md:block"/>
-              <span className="text-emerald-600">digital infrastructure</span> for our city.
+              We are engineering the <br className="hidden md:block" />
+              <span className="text-primary">digital infrastructure</span> for our city.
             </h1>
             <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
               teamCobuild is not just a software company; it is a movement. We are a collective of designers, engineers, and thinkers obsessed with solving foundational local problems using global-standard technology.
@@ -46,22 +46,22 @@ export default function AboutPage() {
         <section className="max-w-7xl mx-auto mb-24">
           <div className="grid md:grid-cols-2 gap-4">
             {/* Left: The Vision */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between min-h-100"
             >
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                <Target className="text-emerald-400" size={24} />
+                <Target className="text-primary" size={24} />
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-4">The Long-Term View</h3>
                 <p className="text-slate-300 leading-relaxed mb-8">
                   We aren't interested in quick flips. We are building for the next decade. Our goal is to create a sustainable ecosystem where software solves real logistics, commerce, and community challenges in Nigeria.
                 </p>
-                <div className="flex items-center gap-2 text-emerald-400 font-medium">
-                  <span className="h-px w-8 bg-emerald-400" />
+                <div className="flex items-center gap-2 text-accent font-medium">
+                  <span className="h-px w-8 bg-accent" />
                   Building for 2035
                 </div>
               </div>
@@ -69,23 +69,23 @@ export default function AboutPage() {
 
             {/* Right: The Method */}
             <div className="grid gap-4">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-emerald-50 border border-emerald-100 rounded-3xl p-8 flex flex-col justify-center h-full"
+                className="bg-primary/5 border border-primary/10 rounded-3xl p-8 flex flex-col justify-center h-full"
               >
-                <div className="flex items-center gap-3 mb-3 text-emerald-800 font-bold text-xl">
+                <div className="flex items-center gap-3 mb-3 text-primary font-bold text-xl">
                   <Code size={24} />
                   <span>Engineering Excellence</span>
                 </div>
-                <p className="text-emerald-700/80">
+                <p className="text-primary/80">
                   We treat every MVP like mission-critical software. Clean code, scalable architecture, and thoughtful UX are our non-negotiables.
                 </p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -129,7 +129,7 @@ export default function AboutPage() {
         <section className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Ready to see what we're building?</h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="flex items-center gap-2 bg-slate-900 text-white px-8 py-3.5 rounded-full font-medium hover:bg-emerald-600 transition-colors">
+            <button className="flex items-center gap-2 bg-slate-900 text-white px-8 py-3.5 rounded-full font-medium hover:bg-primary transition-colors">
               <Zap size={18} />
               View Projects
             </button>
@@ -143,6 +143,6 @@ export default function AboutPage() {
       </main>
 
       <Footer />
-    </div>
+    </div >
   );
 }

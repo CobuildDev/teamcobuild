@@ -100,7 +100,7 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-2 bg-green-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md hover:bg-green-600 transition-all"
+              className="group flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-secondary/90 transition-all"
             >
               Contact
               <ArrowUpRight
@@ -150,7 +150,7 @@ export default function Navbar() {
                   <div className="h-px bg-slate-100 my-1" />
                   <Link
                     href="/contact"
-                    className="flex items-center justify-between px-4 py-3 font-semibold text-white bg-green-700 rounded-xl hover:bg-green-600 transition-all"
+                    className="flex items-center justify-between px-4 py-3 font-semibold text-white bg-secondary rounded-xl hover:bg-secondary/90 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     Contact Us
