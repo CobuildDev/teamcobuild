@@ -3,11 +3,12 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
-
+import Comments from "./Comments";
 async function getPost(slug: string) {
     const query = `
     query GetPostBySlug($id: ID!) {
       post(id: $id, idType: SLUG) {
+        databaseId
         title
         content
         date
@@ -19,6 +20,18 @@ async function getPost(slug: string) {
         author {
           node {
             name
+          }
+        }
+        comments {
+          nodes {
+            id
+            content
+            date
+            author {
+              node {
+                name
+              }
+            }
           }
         }
       }
@@ -107,6 +120,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               text-slate-700 leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
+
+                    <Comments comments={post.comments?.nodes || []} postId={post.databaseId} />
                 </article>
             </main>
 
