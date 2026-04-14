@@ -30,7 +30,7 @@ export default function Comments({ comments, postId }: CommentsProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
-    
+
     try {
       const res = await fetch("https://dev-teamcobuild.pantheonsite.io/graphql", {
         method: "POST",
@@ -65,7 +65,7 @@ export default function Comments({ comments, postId }: CommentsProps) {
       });
 
       const json = await res.json();
-      
+
       if (json.errors) {
         setSubmitError(json.errors[0]?.message || "An error occurred.");
       } else {
@@ -83,14 +83,13 @@ export default function Comments({ comments, postId }: CommentsProps) {
   return (
     <div className="mt-20 pt-10 border-t border-slate-200">
       <div className="flex items-center gap-3 mb-8 text-slate-800">
-        <MessageSquare size={24} className="text-emerald-600" />
         <h2 className="text-2xl font-bold tracking-tight">Comments</h2>
       </div>
 
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8 mb-12">
         <h3 className="text-lg font-bold text-slate-800 mb-6">Leave a Reply</h3>
         {isSuccess ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-xl mb-6 font-medium text-sm flex items-center gap-2"
@@ -98,9 +97,9 @@ export default function Comments({ comments, postId }: CommentsProps) {
             Comment submitted for moderation.
           </motion.div>
         ) : null}
-        
+
         {submitError ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 font-medium text-sm flex items-center gap-2"
@@ -174,7 +173,7 @@ export default function Comments({ comments, postId }: CommentsProps) {
                   </div>
                 </div>
               </div>
-              <div 
+              <div
                 className="prose prose-sm prose-slate max-w-none text-slate-600 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: comment.content }}
               />
