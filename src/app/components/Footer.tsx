@@ -167,6 +167,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-2">
                 <FooterLink href="/about" label="About" />
                 <FooterLink href="/careers" label="Careers" />
+                <FooterLink href="/certifications" label="Certifications" />
                 <FooterLink href="/blog" label="Blog" />
                 <FooterLink href="/contact" label="Contact" />
               </ul>
