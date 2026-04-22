@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { getAllPosts } from "@/lib/wordpress";
 import Footer from "../components/Footer";
-import { motion } from "framer-motion"; // Note: Use Framer Motion only on Client Components or wrap them
 import { PenTool, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 

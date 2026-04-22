@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-primary: #1E7F41;
@@ -10,4 +11,3 @@
 body {
   letter-spacing: -0.03em;
 }
-
