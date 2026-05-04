@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { Lock, Eye, Server, ShieldCheck, ArrowLeft, Mail } from "lucide-react";
 import Link from "next/link";

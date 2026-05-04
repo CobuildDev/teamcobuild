@@ -88,7 +88,7 @@ export default function Footer() {
           {/* Brand & Newsletter column */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <Image
-              src="/icons/teamcobuild.svg"
+              src="/icons/teamcobuild-official.svg"
               alt="teamCobuild Logo"
               width={160}
               height={28}

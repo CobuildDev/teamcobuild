@@ -1,6 +1,6 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import UnderConstruction from "../components/underconstruction";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import UnderConstruction from "../../components/underconstruction";
 export default function helpcenter() {
   return (
     <div>

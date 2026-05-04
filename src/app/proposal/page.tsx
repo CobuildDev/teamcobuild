@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { Lightbulb, Send, CheckCircle2, AlertCircle, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";

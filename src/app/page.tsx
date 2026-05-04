@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import Navbar from "./components/Navbar";
-import Partners from "./components/partners";
+import Navbar from "../components/Navbar";
+import Partners from "../components/partners";
 import Link from "next/link";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";  // The Hero component we just created
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";  // The Hero component we just created
 import { motion } from "framer-motion";
 import { Users, Code2, Globe, Cpu, Database, Layout } from "lucide-react";
 

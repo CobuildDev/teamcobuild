@@ -7,7 +7,19 @@
   --color-accent: #00C2FF;
   --color-highlight: #FFD600;
 }
+@font-face {
+  font-family: Sanchez;
+  src: url(/font/Sanchez-Regular.ttf) format("truetype");
+}
+
+
+
 
 body {
   letter-spacing: -0.03em;
+}
+h1, h2, h3, h4{
+  font-family: "Sanchez", serif;
+  font-weight: 400;
+  /* font-style: normal; */
 }

@@ -1,9 +1,9 @@
 "use client";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { Target, Users, Zap, MapPin, ArrowRight, Code, Heart } from "lucide-react";
-import TeamSlider from "../components/Teamslider";
+import TeamSlider from "../../components/Teamslider";
 
 
 // --- Sub-Component: Stat Item ---
